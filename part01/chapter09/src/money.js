@@ -1,6 +1,11 @@
 export class Money {
-  constructor() {
-    this._amount = null;
+  constructor(amount, currency) {
+    this._amount = amount;
+    this._currency = currency;
+  }
+
+  currency() {
+    throw new Error('Abstract method must be implemented.');
   }
 
   /**
@@ -11,5 +16,9 @@ export class Money {
     return (
       this._amount === money._amount && this.constructor === money.constructor
     );
+  }
+
+  currency() {
+    return this._currency;
   }
 }

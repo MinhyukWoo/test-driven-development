@@ -1,11 +1,12 @@
 import { Money } from './money';
+import { MoneyFactory } from './moneyFactory';
 
 export class Franc extends Money {
-  constructor(amount) {
-    super();
-    this._amount = amount;
+  constructor(amount, currency) {
+    super(amount, currency);
   }
+
   times(multiplier) {
-    return new Franc(this._amount * multiplier);
+    return MoneyFactory.franc(this._amount * multiplier);
   }
 }

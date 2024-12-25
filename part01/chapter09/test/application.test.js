@@ -27,4 +27,9 @@ describe('Test of Currency', () => {
 
     expect(five.times(3).equals(MoneyFactory.franc(15))).toBeTruthy();
   });
+
+  test('Test Currency', () => {
+    expect(MoneyFactory.dollar(1).currency()).toBe('USD');
+    expect(MoneyFactory.franc(1).currency()).toBe('CHF');
+  });
 });
