@@ -5,12 +5,9 @@ describe('Test of Dollar', () => {
     const five = new Dollar(5);
     expect(five).toBeInstanceOf(Dollar);
 
-    let product = five.times(2);
-    expect(product).toBeInstanceOf(Dollar);
-    expect(product.amount).toBe(10);
+    expect(five.times(2).equals(new Dollar(10))).toBeTruthy();
 
-    product = five.times(3);
-    expect(product.amount).toBe(15);
+    expect(five.times(3).equals(new Dollar(15))).toBeTruthy();
   });
 
   test('test equality', () => {
