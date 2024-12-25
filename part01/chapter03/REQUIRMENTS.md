@@ -3,3 +3,7 @@
 - [ ] amount를 private으로 만들기
 - [x] Dollar 부작용?
 - [ ] Money 부작용?
+- [x] equals()
+- [ ] hadCode()
+- [ ] Equal null
+- [ ] Equal object
