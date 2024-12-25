@@ -1,17 +1,11 @@
-export class Dollar {
-  #amount;
+import { Money } from './money';
+
+export class Dollar extends Money {
   constructor(amount) {
-    this.#amount = amount;
+    super();
+    this._amount = amount;
   }
   times(multiplier) {
-    return new Dollar(this.#amount * multiplier);
-  }
-
-  /**
-   * @param {Dollar} dollar
-   * @returns {boolean}
-   */
-  equals(dollar) {
-    return this.#amount === dollar.#amount;
+    return new Dollar(this._amount * multiplier);
   }
 }

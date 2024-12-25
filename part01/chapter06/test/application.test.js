@@ -11,9 +11,11 @@ describe('Test of Currency', () => {
     expect(five.times(3).equals(new Dollar(15))).toBeTruthy();
   });
 
-  test('Test Dollar Equality', () => {
+  test('Test Equality', () => {
     expect(new Dollar(5).equals(new Dollar(5))).toBeTruthy();
     expect(new Dollar(5).equals(new Dollar(6))).toBeFalsy();
+    expect(new Franc(5).equals(new Franc(5))).toBeTruthy();
+    expect(new Franc(5).equals(new Franc(6))).toBeFalsy();
   });
 
   test('Test Franc Multipliaction', () => {
