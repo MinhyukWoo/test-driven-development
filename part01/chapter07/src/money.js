@@ -8,6 +8,8 @@ export class Money {
    * @returns {boolean}
    */
   equals(money) {
-    return this._amount === money._amount;
+    return (
+      this._amount === money._amount && this.constructor === money.constructor
+    );
   }
 }
