@@ -1,5 +1,6 @@
 import { MoneyFactory } from '../src/moneyFactory';
 import { Money } from '../src/money';
+import { Franc } from '../src/franc';
 
 describe('Test of Currency', () => {
   test('Test Dollar Multipliaction', () => {
@@ -31,5 +32,9 @@ describe('Test of Currency', () => {
   test('Test Currency', () => {
     expect(MoneyFactory.dollar(1).currency()).toBe('USD');
     expect(MoneyFactory.franc(1).currency()).toBe('CHF');
+  });
+
+  test('Test Different Class Equality', () => {
+    expect(new Money(10, 'CHF').equals(new Franc(10, 'CHF'))).toBeTruthy();
   });
 });

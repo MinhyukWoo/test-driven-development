@@ -4,21 +4,21 @@ export class Money {
     this._currency = currency;
   }
 
-  currency() {
-    throw new Error('Abstract method must be implemented.');
-  }
-
   /**
    * @param {Money} money
    * @returns {boolean}
    */
   equals(money) {
     return (
-      this._amount === money._amount && this.constructor === money.constructor
+      this._amount === money._amount && this.currency() === money.currency()
     );
   }
 
   currency() {
     return this._currency;
+  }
+
+  times(multiplier) {
+    return new Money(this._amount * multiplier, this._currency);
   }
 }
