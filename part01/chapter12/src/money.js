@@ -1,4 +1,6 @@
-export class Money {
+import { Expression } from './expression';
+
+export class Money extends Expression {
   static dollar(amount) {
     return new Money(amount, 'USD');
   }
@@ -8,6 +10,7 @@ export class Money {
   }
 
   constructor(amount, currency) {
+    super();
     this._amount = amount;
     this._currency = currency;
   }
@@ -28,5 +31,13 @@ export class Money {
 
   times(multiplier) {
     return new Money(this._amount * multiplier, this._currency);
+  }
+
+  /**
+   * @param {Money} money
+   * @returns {Money}
+   */
+  plus(money) {
+    return new Money(this._amount + money._amount, this._currency);
   }
 }
