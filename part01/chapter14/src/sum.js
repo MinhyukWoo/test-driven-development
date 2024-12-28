@@ -1,3 +1,4 @@
+import { Bank } from './bank';
 import { Expression } from './expression';
 import { Money } from './money';
 
@@ -15,10 +16,11 @@ export class Sum extends Expression {
 
   /**
    *
+   * @param {Bank} bank
    * @param {string} to Target Currency
    * @returns {Money}
    */
-  reduce(to) {
+  reduce(bank, to) {
     return new Money(this.augend.amount + this.addend.amount, to);
   }
 }

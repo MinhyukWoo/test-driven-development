@@ -1,3 +1,4 @@
+import { Bank } from './bank';
 import { Sum } from './sum';
 
 export class Money {
@@ -46,10 +47,12 @@ export class Money {
 
   /**
    *
+   * @param {Bank} bank
    * @param {string} to Target Currency
    * @returns {Money}
    */
-  reduce(to) {
-    return this;
+  reduce(bank, to) {
+    const rate = bank.rate(this.currency(), to);
+    return new Money(this.amount / rate, to);
   }
 }
