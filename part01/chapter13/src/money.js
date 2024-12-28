@@ -1,6 +1,7 @@
+import { Expression } from './expression';
 import { Sum } from './sum';
 
-export class Money {
+export class Money extends Expression {
   static dollar(amount) {
     return new Money(amount, 'USD');
   }
