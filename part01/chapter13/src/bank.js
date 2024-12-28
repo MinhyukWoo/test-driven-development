@@ -1,12 +1,17 @@
+import { Expression } from './expression';
 import { Money } from './money';
+import { Sum } from './sum';
 
 export class Bank {
   /**
+   *
+   *
+   * @param {{ source: Expression | Money; to: string; }} param0
+   * @param {Expression | Money} param0.source
+   * @param {string} param0.to
    * @returns {Money}
-   * @param {Money} money
-   * @param {string} currency
    */
-  reduce(money, currency) {
-    return money;
+  reduce({ source, to }) {
+    return source.reduce(to);
   }
 }

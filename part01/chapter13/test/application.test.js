@@ -1,6 +1,7 @@
 import { Money } from '../src/money';
 import { Expression } from '../src/expression';
 import { Bank } from '../src/bank';
+import { Sum } from '../src/sum';
 
 describe('Test of Currency', () => {
   test('Test Dollar Multipliaction', () => {
@@ -28,7 +29,31 @@ describe('Test of Currency', () => {
     expect(sum).toBeInstanceOf(Expression);
     const bank = new Bank();
     expect(bank).toBeInstanceOf(Bank);
-    const reduced = bank.reduce(sum, 'USD');
+    const reduced = bank.reduce({ source: sum, to: 'USD' });
     expect(reduced).toEqual(Money.dollar(10));
+  });
+
+  test('Test Plus Returns Sum', () => {
+    const five = Money.dollar(5);
+    expect(five).toBeInstanceOf(Money);
+    const sum = five.plus(five);
+    expect(sum).toBeInstanceOf(Expression);
+    expect(sum).toBeInstanceOf(Sum);
+    expect(sum.augend).toEqual(five);
+    expect(sum.addend).toEqual(five);
+  });
+
+  test('Test Reduce Sum', () => {
+    const sum = new Sum(Money.dollar(3), Money.dollar(4));
+    const bank = new Bank();
+    expect(bank).toBeInstanceOf(Bank);
+    const result = bank.reduce({ source: sum, to: 'USD' });
+    expect(result).toEqual(Money.dollar(7));
+  });
+
+  test('Test Reduce Money', () => {
+    const bank = new Bank();
+    const result = bank.reduce({ source: Money.dollar(1), to: 'USD' });
+    expect(result).toEqual(Money.dollar(1));
   });
 });

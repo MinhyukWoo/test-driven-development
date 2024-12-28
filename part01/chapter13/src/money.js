@@ -1,6 +1,6 @@
-import { Expression } from './expression';
+import { Sum } from './sum';
 
-export class Money extends Expression {
+export class Money {
   static dollar(amount) {
     return new Money(amount, 'USD');
   }
@@ -10,9 +10,12 @@ export class Money extends Expression {
   }
 
   constructor(amount, currency) {
-    super();
     this._amount = amount;
     this._currency = currency;
+  }
+
+  get amount() {
+    return this._amount;
   }
 
   /**
@@ -35,9 +38,18 @@ export class Money extends Expression {
 
   /**
    * @param {Money} money
-   * @returns {Money}
+   * @returns {Sum}
    */
   plus(money) {
-    return new Money(this._amount + money._amount, this._currency);
+    return new Sum(this, money);
+  }
+
+  /**
+   *
+   * @param {string} to Target Currency
+   * @returns {Money}
+   */
+  reduce(to) {
+    return this;
   }
 }
