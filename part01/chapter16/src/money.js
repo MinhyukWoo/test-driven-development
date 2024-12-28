@@ -42,7 +42,7 @@ export class Money extends Expression {
    * @returns {Expression}
    */
   times(multiplier) {
-    return new Money(this._amount * multiplier, this._currency);
+    return new Money(this.amount * multiplier, this.currency());
   }
 
   /**

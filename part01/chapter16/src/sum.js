@@ -19,7 +19,20 @@ export class Sum extends Expression {
    * @returns {Sum}
    */
   plus(addend) {
-    return null;
+    return new Sum(this, addend);
+  }
+
+  /**
+   *
+   *
+   * @param {number} multiplier
+   * @returns {Expression}
+   */
+  times(multiplier) {
+    return new Sum(
+      this.augend.times(multiplier),
+      this.addend.times(multiplier)
+    );
   }
 
   /**

@@ -4,9 +4,19 @@ import { Money } from './money';
 export class Expression {
   /**
    * @param {Expression} addend
-   * @returns {Sum}
+   * @returns {Expression}
    */
   plus(addend) {
+    throw new Error('Abstract method must be implemented.');
+  }
+
+  /**
+   *
+   *
+   * @param {number} multiplier
+   * @returns {Expression}
+   */
+  times(multiplier) {
     throw new Error('Abstract method must be implemented.');
   }
 

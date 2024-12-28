@@ -77,4 +77,24 @@ describe('Test of Currency', () => {
     const reduced = bank.reduce({ source: sum, to: 'USD' });
     expect(reduced).toEqual(Money.dollar(10));
   });
+
+  test('Test Sum Plus Money', () => {
+    const fiveBucks = Money.dollar(5);
+    const tenFrancs = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate({ from: 'CHF', to: 'USD', rate: 2 });
+    const sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+    const result = bank.reduce({ source: sum, to: 'USD' });
+    expect(result).toEqual(Money.dollar(15));
+  });
+
+  test('Test Sum Times', () => {
+    const fiveBucks = Money.dollar(5);
+    const tenFrancs = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate({ from: 'CHF', to: 'USD', rate: 2 });
+    const sum = new Sum(fiveBucks, tenFrancs).times(2);
+    const result = bank.reduce({ source: sum, to: 'USD' });
+    expect(result).toEqual(Money.dollar(20));
+  });
 });
