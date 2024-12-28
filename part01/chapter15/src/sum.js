@@ -5,13 +5,21 @@ import { Money } from './money';
 export class Sum extends Expression {
   /**
    *
-   * @param {Money} augend
-   * @param {Money} addend
+   * @param {Expression} augend
+   * @param {Expression} addend
    */
   constructor(augend, addend) {
     super();
     this.augend = augend;
     this.addend = addend;
+  }
+
+  /**
+   * @param {Expression} addend
+   * @returns {Sum}
+   */
+  plus(addend) {
+    return null;
   }
 
   /**
@@ -21,6 +29,9 @@ export class Sum extends Expression {
    * @returns {Money}
    */
   reduce(bank, to) {
-    return new Money(this.augend.amount + this.addend.amount, to);
+    return new Money(
+      this.augend.reduce(bank, to).amount + this.addend.reduce(bank, to).amount,
+      to
+    );
   }
 }

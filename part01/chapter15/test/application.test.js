@@ -36,6 +36,7 @@ describe('Test of Currency', () => {
   test('Test Plus Returns Sum', () => {
     const five = Money.dollar(5);
     expect(five).toBeInstanceOf(Money);
+    expect(five).toBeInstanceOf(Expression);
     const sum = five.plus(five);
     expect(sum).toBeInstanceOf(Expression);
     expect(sum).toBeInstanceOf(Sum);
@@ -58,6 +59,7 @@ describe('Test of Currency', () => {
   });
 
   test('Test Reduce Moeny Different Currency', () => {
+    Money.dollar(5);
     const bank = new Bank();
     bank.addRate({ from: 'CHF', to: 'USD', rate: 2 });
     const result = bank.reduce({ source: Money.franc(2), to: 'USD' });
@@ -66,5 +68,13 @@ describe('Test of Currency', () => {
 
   test('Test Identity Rate', () => {
     expect(new Bank().rate('USD', 'USD')).toEqual(1);
+  });
+
+  test('Test Mixed Addition', () => {
+    const sum = Money.dollar(5).plus(Money.franc(10));
+    const bank = new Bank();
+    bank.addRate({ from: 'CHF', to: 'USD', rate: 2 });
+    const reduced = bank.reduce({ source: sum, to: 'USD' });
+    expect(reduced).toEqual(Money.dollar(10));
   });
 });

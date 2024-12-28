@@ -12,6 +12,7 @@ export class Money extends Expression {
   }
 
   constructor(amount, currency) {
+    super();
     this._amount = amount;
     this._currency = currency;
   }
@@ -34,16 +35,22 @@ export class Money extends Expression {
     return this._currency;
   }
 
+  /**
+   *
+   *
+   * @param {number} multiplier
+   * @returns {Expression}
+   */
   times(multiplier) {
     return new Money(this._amount * multiplier, this._currency);
   }
 
   /**
-   * @param {Money} money
+   * @param {Expression} addend
    * @returns {Sum}
    */
-  plus(money) {
-    return new Sum(this, money);
+  plus(addend) {
+    return new Sum(this, addend);
   }
 
   /**
